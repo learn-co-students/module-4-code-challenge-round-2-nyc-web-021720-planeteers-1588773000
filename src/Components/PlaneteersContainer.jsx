@@ -2,7 +2,7 @@ import React from 'react';
 import Planeteer from './Planeteer'
 
 const PlaneteersContainer = (props) => {
-    console.log("props check  1", props.planeteers)
+    // console.log("props check  1", props.planeteers)
 
   return (
     <ul className="cards">

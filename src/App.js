@@ -12,8 +12,7 @@ class App extends React.Component {
    state = {
      planeteersIndex: [],
      // come back to the when doing the search feature 
-     
-    //  searched: []
+     searched: []
    }
 
    componentDidMount(){
@@ -22,19 +21,38 @@ class App extends React.Component {
      .then(data => {
        this.setState({
          planeteersIndex: data,
-        //  searched: data
+         searched: data
        })
      })
    }
 
+  handleSearch = (event) => {
+    let lcBio = this.state.planeteersIndex.map(p => p.bio === p.bio.toLowerCase())
+    // console.log('kdf vl', lcBio)
+
+    const filtered = this.state.planeteersIndex.filter((p) => p.bio.includes(event.target.value))
+    // const filtered = this.state.planeteersIndex.filter((p) => p.bio.includes(event.target.value.toLowerCase()))
+
+    this.setState({
+      searched: filtered
+    })
+  }
+
+// handleSearch = (event) => {
+//   const filtered = this.state.planeteersIndex.filter((p) => p.bio.includes(event.target.value.toLowerCase))
+//   this.setState({
+//     searched: filtered
+//   })
+// }
+
   render(){
-    console.log("fetch check ", this.state.planeteersIndex)
+    // console.log("fetch check ", this.state.planeteersIndex)
     return (
       <div>
         <Header />
-        <SearchBar />
+        <SearchBar handleSearch={this.handleSearch}/>
         <RandomButton/>
-        <PlaneteersContainer planeteers={this.state.planeteersIndex} />
+        <PlaneteersContainer planeteers={this.state.searched} />
       </div>
     );
   }

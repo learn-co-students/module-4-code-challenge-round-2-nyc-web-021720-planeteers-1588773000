@@ -17,7 +17,7 @@ class Planeteer extends React.Component {
   }
 
   render() {
-    console.log("props check 2", this.props.planeteer)
+    // console.log("props check 2", this.props.planeteer)
 
 
     return (
